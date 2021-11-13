@@ -6,7 +6,7 @@ import { useState } from "react/cjs/react.development";
 import Loader from "./Loader";
 
 export default function Read() {
-  const [apiData, setApiData] = useState([]);
+  const [apiData, setApiData] = useState();
   const [loading, setLoading] = useState(true);
 
   // get data from mockapi with useEffect
