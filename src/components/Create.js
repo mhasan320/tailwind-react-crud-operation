@@ -7,6 +7,7 @@ export default function Create() {
   let navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
 
   // send data into mock api with function
   const sendDataApi = (e) => {
@@ -17,7 +18,11 @@ export default function Create() {
         email,
       })
       .then(() => {
+        setError(false);
         navigate("/");
+      })
+      .catch(() => {
+        setError(true);
       });
     localStorage.setItem("fullName", fullName);
     localStorage.setItem("email", email);
@@ -38,6 +43,11 @@ export default function Create() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
+        {error && (
+          <p className="mb-4 text-center text-sm text-red-300">
+            Faild to post data
+          </p>
+        )}
         <button
           type="submit"
           className="bg-indigo-500 border border-indigo-500 rounded-sm text-white px-9 py-2 font-semibold uppercase hover:bg-transparent hover:text-indigo-500 transition-all"
